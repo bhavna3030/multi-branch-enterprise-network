@@ -51,8 +51,6 @@ A segmented enterprise network with one headquarters (HQ) and two branch offices
 Normal path: each branch reaches HQ over its direct link.
 Backup path: if a branch-to-HQ link fails, traffic goes through the other branch over the BR1-BR2 link.
 
-> Add your own topology screenshot here: `![Topology](screenshots/01-topology.png)`
-
 ---
 
 ## Technologies used
@@ -120,8 +118,6 @@ HQ-SW Gi0/1 is an 802.1Q trunk to HQ-R Gi0/0 carrying VLANs 10, 20, 30 and 99.
 ---
 
 ## Configuration summary
-
-Full configs are in the [`configs/`](configs/) folder. Key points:
 
 - **HQ-SW:** VLANs 10/20/30/99, access ports per VLAN, trunk on Gi0/1.
 - **HQ-R:** subinterfaces `g0/0.10`, `.20`, `.30`, `.99` (dot1Q) as VLAN gateways; DHCP pools for Sales, IT and Guest; NAT overload on `s0/0/0`; three ACLs; OSPF with LAN subinterfaces set passive; static default route to the ISP, advertised into OSPF with `default-information originate`.
@@ -274,29 +270,6 @@ Fill the **Result** column with Pass/Fail after you run each test, and link the 
 - Not yet implemented: port security, SSH-only management, STP/RSTP tuning, EtherChannel, OSPF authentication, DHCP snooping, a DMZ, and a site-to-site VPN.
 
 ---
-
-## Repository structure
-
-```
-multi-branch-enterprise-network/
-├── README.md
-├── multi-branch-network.pkt
-├── configs/
-│   ├── HQ-R.txt
-│   ├── BR1-R.txt
-│   ├── BR2-R.txt
-│   ├── ISP-R.txt
-│   └── HQ-SW.txt
-└── screenshots/
-    ├── 01-topology.png
-    ├── 02-ospf-neighbors.png
-    ├── 03-routing-table.png
-    ├── 04-nat-translations.png
-    ├── 05-access-lists.png
-    ├── 06-traceroute-before.png
-    ├── 07-traceroute-after.png
-    └── 08-dhcp-binding.png
-```
 
 ---
 
